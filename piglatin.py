@@ -9,17 +9,20 @@ class PigLatin:
     def translate(self) -> str:
         vowels = ("a", "e", "i", "o", "u", "ä", "ö", "å")
         consonants = ("b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z")
+        phrase = self.get_phrase()
 
-        if not self.get_phrase():
+        if not phrase:
             return "nil"
 
-        if self.get_phrase().endswith("y"):
-            return self.get_phrase() + "nay"
-        elif self.get_phrase().startswith(consonants):
-            return self.get_phrase()[1:] + self.get_phrase()[0] + "ay"
-        elif self.get_phrase().endswith(vowels):
-            return self.get_phrase() + "yay"
-        elif self.get_phrase().endswith(consonants):
-            return self.get_phrase() + "ay"
+        if phrase.endswith("y"):
+            return phrase + "nay"
+        elif phrase.startswith(consonants):
+            if phrase[1] in consonants:
+                return phrase[2:] + phrase[0] + phrase[1] + "ay"
+            return phrase[1:] + phrase[0] + "ay"
+        elif phrase.endswith(vowels):
+            return phrase + "yay"
+        elif phrase.endswith(consonants):
+            return phrase + "ay"
 
-        return self.get_phrase()
+        return phrase
