@@ -15,6 +15,8 @@ class PigLatin:
 
         if self.get_phrase().endswith("y"):
             return self.get_phrase() + "nay"
+        elif self.get_phrase().startswith(consonants) or self.get_phrase().startswith("y"):
+            return self.get_phrase()[1:] + self.get_phrase()[0] + "ay"
         elif self.get_phrase().endswith(vowels):
             return self.get_phrase() + "yay"
         elif self.get_phrase().endswith(consonants):
