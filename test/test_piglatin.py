@@ -11,4 +11,8 @@ class TestPigLatin(unittest.TestCase):
 
     def test_get_nil_phrase(self):
         translator = PigLatin("")
-        self.assertEqual("nil", translator.get_phrase())
+        self.assertEqual("nil", translator.translate())
+
+    def test_word_ends_with_y(self):
+        translator = PigLatin("hey")
+        self.assertEqual("heynay", translator.translate())
